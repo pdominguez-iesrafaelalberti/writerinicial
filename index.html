@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desarrollo Web</title>
+
+</head>
+
+<body>
+
+    <header></header>
+    <div class="contenido">
+        <nav>
+            <!doctype html>
+            <html>
+
+            <head>
+                <meta charset="utf-8">
+                <title>TIC 2020. Tecnología Web</title>
+                <meta name="description" content="Ejemplo de un menú responsive para desktop, tablet y móvil">
+                <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+                <style media="all" type="text/css">
+                    #writerlogo{
+                        border-radius: 50%;
+                        width: 10%;
+                    }
+                    #logo {
+                        border-radius: 50%;
+                        width: 30%;
+                        float: right;
+                    }
+                    ul {
+                        list-style: none;
+                    }
+                    
+                    a {
+                        text-decoration: none;
+                        color: black;
+                    }
+                    
+                    body {
+                        font-family: 'Dosis', sans-serif;
+                        background: rgb(243, 204, 240);
+                    }
+                    h3{
+                    background-color: yellow;
+                        color:red;
+                    }
+                    #menu-wrapper {
+                        overflow: hidden;
+                        max-width: 100%;
+                        cursor: pointer;
+                    }
+                    
+                    #menu-wrapper #hamburger-menu {
+                        position: relative;
+                        width: 25px;
+                        height: 20px;
+                        margin: 15px;
+                    }
+                    
+                    #menu-wrapper #hamburger-menu span {
+                        opacity: 1;
+                        left: 0;
+                        display: block;
+                        width: 100%;
+                        height: 5px;
+                        border-radius: 10px;
+                        color: black;
+                        background-color:#AD1314;
+                        position: absolute;
+                        transform: rotate(0deg);
+                        transition: .4s ease-in-out;
+                    }
+                    
+                    #menu-wrapper #hamburger-menu span:nth-child(1) {
+                        top: 0;
+                    }
+                    
+                    #menu-wrapper #hamburger-menu span:nth-child(2) {
+                        top: 9px;
+                    }
+                    
+                    #menu-wrapper #hamburger-menu span:nth-child(3) {
+                        top: 18px;
+                    }
+                    
+                    #menu-wrapper #hamburger-menu.open span:nth-child(1) {
+                        transform: translateY(9px) rotate(135deg);
+                    }
+                    
+                    #menu-wrapper #hamburger-menu.open span:nth-child(2) {
+                        opacity: 0;
+                        transform: translateX(-60px);
+                    }
+                    
+                    #menu-wrapper #hamburger-menu.open span:nth-child(3) {
+                        transform: translateY(-9px) rotate(-135deg);
+                    }
+                    
+                    #menu-container .menu-list .menu-submenu {
+                        padding-top: 20px;
+                        padding-bottom: 20px;
+                    }
+                    
+                    #menu-container .menu-list {
+                        padding-left: 0;
+                        display: block;
+                        position: absolute;
+                        width: 100%;
+                        /*max-width: 450px;*/
+                        background: white;
+                        box-shadow: rgba(100, 100, 100, 0.2) 6px 2px 10px;
+                        z-index: 999;
+                        overflow-y: auto;
+                        overflow-x: hidden;
+                        left: -100%;
+                    }
+                    
+                    #menu-container .menu-list li.accordion-toggle,
+                    #menu-container .menu-list .menu-login {
+                        font-size: 16px;
+                        padding: 20px;
+                        text-transform: uppercase;
+                        border-top: 1px solid #dbdcd2;
+                    }
+                    
+                    #menu-container .menu-list li:first-of-type {
+                        border-top: 0;
+                    }
+                    
+                    .menu-submenu a:hover {
+                        color:white;
+                        background-color:  #AD1314;
+                    }
+                    
+                    .accordion-toggle,
+                    .accordion-content {
+                        cursor: pointer;
+                        font-size: 16px;
+                        position: relative;
+                        letter-spacing: 1px;
+                    }
+                    
+                    .accordion-content {
+                        display: none;
+                    }
+                    
+                    .accordion-toggle a:before,
+                    .accordion-toggle a:after {
+                        content: '';
+                        display: block;
+                        position: absolute;
+                        top: 50%;
+                        right: 30px;
+                        width: 15px;
+                        height: 2px;
+                        margin-top: -1px;
+                        background-color: #5a5858;
+                        transform-origin: 50% 50%;
+                        transition: all 0.3s ease-out;
+                    }
+                    
+                    .accordion-toggle a:before {
+                        transform: rotate(-90deg);
+                        opacity: 1;
+                        z-index: 2;
+                    }
+                    
+                    .accordion-toggle.active-tab {
+                        color:white;
+                        background-color:  #AD1314;
+                        transition: all 0.3s ease;
+                    }
+                    
+                    .accordion-toggle a:hover {
+                        background-color: yellow;
+                    }
+                    
+                    .accordion-toggle a.active:before {
+                        transform: rotate(0deg);
+                        background: #fff !important;
+                    }
+                    
+                    .accordion-toggle a.active:after {
+                        transform: rotate(180deg);
+                        background: #fff !important;
+                        opacity: 0;
+                    }
+                </style>
+            </head>
+
+            <body>
+                <img id="logo" src="images/logo.png" >
+        
+                <div id="menu-container">
+                    <div id="menu-wrapper">
+                        <div id="hamburger-menu"><span></span><span></span><span></span></div>
+
+                        <!-- hamburger-menu -->
+                    </div>
+                    <!-- menu-wrapper -->
+                    <ul class="menu-list accordion">
+                        <li id="nav1" class="toggle accordion-toggle">
+                            <span class="icon-plus"></span>
+                            <a class="menu-link" href="#"> 1 - Creación y edición de documentos en Writer</a>
+                        </li>
+                        <!-- accordion-toggle -->
+                        <ol class="menu-submenu accordion-content">
+                            <li><a class="head" href="https://www.youtube.com/watch?v=_sSSo_hV6Vg&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=1" target="_blank">W1-1-01. La barra de titulo de LibreOffice</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=O2mggVHITUA&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=2" target="_blank">W1-1-02. La barra de menús en LibreOffice Writer</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=bCGaB-enOEM&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=3" target="_blank">W1-1-03. Las barras de herramientas</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=6DdqPDqn0AM&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=4" target="_blank">W1-1-04. Las reglas en LibreOffice Writer</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=bz2-lDxQnA4&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=5" target="_blank">W1-1-05. La barra lateral</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=ssziLPlBCNg&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=6" target="_blank">W1-1-06. El cambio de idioma en LibreOffice</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=fEFYE0lq0Yw&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=7" target="_blank">W1-1-07. La instalación de idiomas en LibreOffice</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=-XjKTDPIiR0&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=8" target="_blank">W1-1-08. Cambiar el tamaño de los iconos en LibreOffice</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=xWPJnKUyGeg&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=9" target="_blank">W1-1-09. Cambiar el estilo de los iconos en LibreOffice</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=s_voF6a1_a8&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=10" target="_blank">W1.1.10. Crear un nuevo documento en blanco</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=CBtPRLesjds&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=11" target="_blank">W1-1-11. Crear un nuevo documento de Writer basado en una plantilla</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=42PHM2kmeT4&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=12" target="_blank">W1-1-12. Guardar documentos en LibreOffice Writer</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=-AxOvi9LvzA&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=13" target="_blank">W1-1-13. Guardar documentos en otros formatos</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=HFYP3uQ3ZEk&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=15" target="_blank">W1-1-14. Cortar, copiar y pegar en LibreOffice Writer</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=OelAcGET9So&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=16" target="_blank">W1-1-15. Buscar texto en LibreOffice Writer</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=TFX2XnVM6-c&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=17" target="_blank">W1-1-16. Buscar y reemplazar en LibreOffice Writer</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=i4mnV3WXhGQ&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=18" target="_blank">W1-1-17-Mostrar las extensiones de archivo en Windows 7</a></li>
+                        </ol>
+                        <!-- menu-submenu accordon-content-->
+                        <li id="nav2" class="toggle accordion-toggle">
+                            <span class="icon-plus"></span>
+                            <a class="menu-link" href="#">2 - Formato de texto en LibreOffice Writer</a>
+                        </li>
+                        <!-- accordion-toggle -->
+                        <ul class="menu-submenu accordion-content">
+                            <li><a class="head" href="https://www.youtube.com/watch?v=itcM3dR8JU4&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=19" target="_blank">W1-2-01. Formato de carácter en LibreOffice Writer</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=ZOaSWjf0tSQ&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=20" target="_blank">W1-2-02. Formato de párrafo en LibreOffice Writer</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=PmQMgJUJJqs&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=22" target="_blank">W1-2-03. Formato de listas en LibreOffice Writer</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=hAiWHEdeVbo&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=21" target="_blank">W1 2 04 Tabulaciones en LibreOffice Writer</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=a-w3sJCJYq8&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=23" target="_blank">W1 2 05 Letra capitular en LibreOffice Writer</a></li>
+                        </ul>
+                        <!-- menu-submenu accordon-content-->
+                        <li id="nav3" class="toggle accordion-toggle">
+                            <span class="icon-plus"></span>
+                            <a class="menu-link" href="#">3 - Trabajo con estilos</a>
+                        </li>
+                        <!-- accordion-toggle -->
+                        <ol class="menu-submenu accordion-content">
+                            <li><a class="head" href="https://www.youtube.com/watch?v=t1JMl0XP1A0&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=24" target="_blank">W1-3-01. Aplicar estilos en LibreOffice Writer</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=8CsNTtvk_8w&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=25" target="_blank">W1-3-02. Modificar estilos en LibreOffice Writer</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=yC-dwO7kNhk&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=26" target="_blank">W1-3-03. Crear estilos personalizados en LibreOffice Writer</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=ntK8cStqcQw&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=27" target="_blank">W1-3-04. Copiar estilos entre documentos de LibreOffice Writer</a></li>
+                        </ol>
+
+                        <!-- menu-submenu accordon-content-->
+                        <li id="nav4" class="toggle accordion-toggle">
+                            <span class="icon-plus"></span>
+                            <a class="menu-link" href="#">4 - Paginación e impresión de documentos con Writer</a>
+                        </li>
+                        <!-- accordion-toggle -->
+                        <ol class="menu-submenu accordion-content">
+                            <li><a class="head" href="https://www.youtube.com/watch?v=rnYpRf9ZDrw&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=28" target="_blank">W1-4-01. Formato de página en LibreOffice Writer</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=f7JnMyrdhlQ&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=29" target="_blank">W1-4-02. Encabezados y pies de página en LibreOffice Writer</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=IZ7urBjqCLQ&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=30" target="_blank">W1-4-03. Estilos de página en LibreOffice Writer</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=Y1HwBA8wI4s&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=31" target="_blank">W1-4-04. Creación de documentos PDF accesibles en Writer</a></li>
+                        </ol>
+
+                        <!-- menu-submenu accordon-content-->
+                        <li id="nav5" class="toggle accordion-toggle">
+                            <span class="icon-plus"></span>
+                            <a class="menu-link" href="#">5 - Trabajo con imágenes</a>
+                        </li>
+                        <!-- accordion-toggle -->
+                        <ol class="menu-submenu accordion-content">
+                            <li><a class="head" href="https://www.youtube.com/watch?v=Rc8zEUL65Jo&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=32" target="_blank">W1-5-01. La Galería de imágenes en LibreOffice Writer</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=Ui_uVf0JCgM&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=33" target="_blank">W1-5-02. Insertar imágenes en LibreOffice Writer</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=VarA6w749SI&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=34" target="_blank">W1-5-03. Ajuste y anclaje de imágenes en LibreOffice Writer</a></li>
+                        </ol>
+
+                        <!-- menu-submenu accordon-content-->
+                        <li id="nav5" class="toggle accordion-toggle">
+                            <span class="icon-plus"></span>
+                            <a class="menu-link" href="#">6 - Herramientas de revisión y autocorrección</a>
+                        </li>
+                        <!-- accordion-toggle -->
+                        <ul class="menu-submenu accordion-content">
+                            <li><a class="head" href="https://www.youtube.com/watch?v=ZgW6YVIVhwA&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=35" target="_blank">W1-6-01. Establecer el idioma predeterminado en LibreOffice Writer</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=HFw32TsoiNs&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=36" target="_blank">W1-6-02. Instalar diccionarios en LibreOffice</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=g0g8Od4QsuA&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=38" target="_blank">W1-6-03. Opciones de corrección automática en LibreOffice Writer</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=xyh5UfQq7ag&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=39" target="_blank">W1-6-04. Instalar el corrector gramatical en LibreOffice Writer</a></li>
+                        </ul>
+                        <!-- menu-submenu accordon-content-->
+                        <li id="nav5" class="toggle accordion-toggle">
+                            <span class="icon-plus"></span>
+                            <a class="menu-link" href="#">7 - Trabajo con documentos largos, esquemas y sumarios</a>
+                        </li>
+                        <!-- accordion-toggle -->
+                        <ul class="menu-submenu accordion-content">
+                            <li><a class="head" href="https://www.youtube.com/watch?v=4cax-nTg5JA&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=40" target="_blank">W1-7-01. Uso del Navegador en LibreOffice Writer</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=3xPu_EsZtAg&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=41" target="_blank">W1-7-02. Modificar el esquema del documento en LibreOffice Writer</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=VLvBmFAkAi0&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=42" target="_blank">W1-7-03. Numeración de capítulos en LibreOffice Writer</a></li>
+                            <li><a class="head" href="https://www.youtube.com/watch?v=JK5vQc7kjXw&list=PLrbPNhH8Y2Gj9xOVe-WF0C3Xescs-C0Wu&index=43" target="_blank">W1-7-04. Creación de sumarios en LibreOffice Writer</a></li>
+
+                        </ul>
+                       
+                    </ul>
+                    <!-- menu-list accordion-->
+                </div>
+                <h1>Writer Inicial</h1>
+                <img id="writerlogo" src="images/LibreOffice_Writer-Logo.wine.png" >
+
+               
+                <ol>
+                    <li>
+                        <b>Creación y edición de documentos en Writer</b>
+                        <ul>
+                            <li>Iniciar el programa LibreOffice Writer.</li>
+                            <li>Reconocer, activar y desactivar diferentes elementos de la interfaz del programa.</li>
+                            <li>Crear, abrir y guardar documentos.</li>
+                            <li>Guardar los documentos de Writer en diferentes formatos.</li>
+                            <li>Utilizar diferentes métodos de navegación y desplazamiento por los documentos.</li>
+                            <li>Usar técnicas básicas de edición de documentos.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <b>Formato de texto en LibreOffice Writer</b>
+                        <ul>
+                            <li>Reconocer los diferentes tipos de formatos aplicables al texto.</li>
+                            <li>Aplicar formatos de carácter</li>
+                            <li>Tipo de letra, tamaño y estilo: negrita y cursiva.</li>
+                            <li>Efectos tipográficos:  color, subrayado, mayúsculas, versalitas.</li>
+                            <li>Bordes de carácter.</li>
+                            <li>Aplicar formatos de párrafo</li>
+                            <li>Sangría, espaciado e interlineado</li>
+                            <li>Alineación</li>
+                            <li>Relleno de área</li>
+                            <li>Bordes de párrafo.</li>
+                            <li>Aplicar numeraciones y viñetas</li>
+                            <li>Numeraciones</li>
+                            <li>Viñetas</li>
+                            <li>Esquemas numerados</li>
+                            <li>Opciones de pegado especial</li>
+                            <li>Copiar sin formato</li>
+                            <li>Copiar sólo el formato</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <b>Trabajo con estilos</b>
+                        <ul>
+                            <li>Aplicar estilos en los documentos de Writer.</li>
+                            <li>Conocer los distintos tipos de estilos existentes, entre otros: De párrafo, de carácter, de lista</li>
+                            <li>Modificar estilos.</li>
+                            <li>Crear estilos personalizados.</li>
+                            <li>Copiar estilos de un documento a otro.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <b>Paginación e impresión de documentos con Writer</b>
+                        <ul>
+                            <li>Establecer el formato de página estableciendo márgenes, tamaño, orientación, bordes y fondos.</li>
+                            <li>Configurar encabezados y pies de página que se repitan en todas las páginas.</li>
+                            <li>Insertar numeraciones automáticas de página y otros campos habituales.</li>
+                            <li>Aplicar diferentes formatos de página en un documento.</li>
+                            <li>Establecer opciones de impresión</li>
+                            <li>Exportar en formato PDF, atendiendo a criterios de accesibilidad.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <b>Trabajo con imágenes</b>
+                        <ul>
+                            <li>Insertar imágenes en los documentos.</li>
+                            <li>Establecer el ajuste entre las imágenes y el texto del documento.</li>
+                            <li>Cambiar el tamaño  y la ubicación de las imágenes.</li>
+                            <li>Editar otras propiedades de las imágenes.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <b>Herramientas de revisión y autocorrección</b>
+                        <ul>
+                            <li>Establecer el idioma predeterminado del documento..</li>
+                            <li>Activar y desactivar la corrección ortográfica automática.</li>
+                            <li>Instalar y usar las herramientas de revisión gramatical.</li>
+                            <li>Usar diccionarios de sinónimos.</li>
+                            <li>Configurar opciones de formato y corrección automática.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <b>Trabajo con documentos largos, esquemas y sumarios</b>
+                        <ul>
+                            <li>Dominar el uso del Navegador para acceder a toda clase de elementos incluidos en el documento.</li>
+                            <li>Usar el Navegador para modificar el esquema o estructura del documento.</li>
+                            <li>Instalar y usar las herramientas de revisión gramatical.</li>
+                            <li>Numerar automáticamente los títulos y subtítulos.</li>
+                            <li>Crear sumarios y tablas de contenido</li>
+                        </ul>
+                    </li>
+                    
+                </ol>
+
+
+
+                <br>
+                <div>
+                    Este curso ha sido producido por <a href="https://aimme.com/es/" target="_blank">AIMME</a> con contenidos elaborados por&nbsp;<a href="https://www.iti.es/" target="_blank">ITI</a>, contando con la financiación de <a href="http://www.ivace.es/index.php?lang=es" target="_blank">IMPIVA</a>, y fue cedido con licencia&nbsp;<a href="https://creativecommons.org/licenses/by-nc-sa/3.0/es/" target="_blank">Creative Commons BY-SA</a>&nbsp;al lamentablemente extinto <a href="https://www.pymesyautonomos.com/tecnologia/morfeo-formacion-y-certificacion-en-tecnologias-libres" target="_blank">PROYECTO MORFEO-FORMACION.</a></p><br><p></p></div></div><div class="courseimage"><img src="https://oficinalibre.net/pluginfile.php/327/course/overviewfiles/logo-morfeo.png" width="5%" />
+                </div>
+
+
+
+
+                <!-- menu-container -->
+                <script type="text/javascript" language="javascript">
+                    $(function() {
+
+                        function slideMenu() {
+                            var activeState = $("#menu-container .menu-list").hasClass("active");
+                            $("#menu-container .menu-list").animate({
+                                left: activeState ? "0%" : "-100%"
+                            }, 400);
+                        }
+                        $("#menu-wrapper").click(function(event) {
+                            event.stopPropagation();
+                            $("#hamburger-menu").toggleClass("open");
+                            $("#menu-container .menu-list").toggleClass("active");
+                            slideMenu();
+
+                            $("body").toggleClass("overflow-hidden");
+                        });
+
+                        $(".menu-list").find(".accordion-toggle").click(function() {
+                            $(this).next().toggleClass("open").slideToggle("fast");
+                            $(this).toggleClass("active-tab").find(".menu-link").toggleClass("active");
+
+                            $(".menu-list .accordion-content").not($(this).next()).slideUp("fast").removeClass("open");
+                            $(".menu-list .accordion-toggle").not(jQuery(this)).removeClass("active-tab").find(".menu-link").removeClass("active");
+                        });
+                    }); // jQuery load
+                </script>
+
+
+
+
+            </body>
+
+            </html>
